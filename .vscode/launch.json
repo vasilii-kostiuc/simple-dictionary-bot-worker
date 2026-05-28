@@ -1,0 +1,16 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch Worker",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/Worker/bin/Debug/net10.0/worker.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/Worker",
+            "stopAtEntry": false,
+            "console": "integratedTerminal"
+        }
+    ]
+}

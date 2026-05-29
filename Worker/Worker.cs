@@ -1,23 +1,20 @@
-namespace simple_dictionary_bot_worker;
+namespace BotWorker.Worker;
 
 public class Worker : BackgroundService
 {
+    private readonly BotPool _pool;
     private readonly ILogger<Worker> _logger;
 
-    public Worker(ILogger<Worker> logger)
+    public Worker(BotPool pool, ILogger<Worker> logger)
     {
+        _pool = pool;
         _logger = logger;
     }
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        while (!stoppingToken.IsCancellationRequested)
-        {
-            if (_logger.IsEnabled(LogLevel.Information))
-            {
-                _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
-            }
-            await Task.Delay(1000, stoppingToken);
-        }
+        _logger.LogInformation("Bot Worker starting");
+        await _pool.RunAsync(stoppingToken);
+        _logger.LogInformation("Bot Worker stopped");
     }
 }

@@ -100,7 +100,7 @@ public class BotAgent : IBotAgent
                 match_type = _settings.MatchParams.MatchType,
                 language_from_id = _settings.MatchParams.LanguageFromId,
                 language_to_id = _settings.MatchParams.LanguageToId,
-                match_params = new { },
+                match_params = _settings.MatchParams.MatchTypeParams,
             }),
             ct
         );
